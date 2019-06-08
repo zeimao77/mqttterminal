@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Configuration status="WARN">
+
+    <properties>
+        <property name="LOG_HOME">logs/</property>
+
+    </properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+        </Console>
+
+        <RollingRandomAccessFile name="RollingFile" immediateFlush="true" fileName="${LOG_HOME}/app_mqttterminal_log.log" filePattern="${LOG_HOME}/app_history_mqttterminal_%d{YYYYMMdd}.log">
+            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+                <Filters>
+                    <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+                </Filters>
+                <Policies>
+                    <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                </Policies>
+            <DefaultRolloverStrategy max="1" />
+        </RollingRandomAccessFile>
+
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>

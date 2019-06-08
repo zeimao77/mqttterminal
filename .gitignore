@@ -1,0 +1,14 @@
+*.log
+*.class
+.project
+.classpath
+
+h
+.settings
+.metadata
+.idea
+.gradle
+out
+build
+log
+bin
